@@ -32,7 +32,9 @@ def hash_wordlist(words,length,average=False):
             averages.append(hash_times[-1]-hash_times[-2])
             print('%s\nHash: %s\nTime: %s\n' % (password,hash,hash_times[-1]-hash_times[0]))
             if average and len(averages) == 10: return sum(averages)/10
-            if not average: averages = []#This is just so averages does not become a large block of memory if you dont plan on averaging.
+            if not average:#This is just so averages/hash_times do not become large blocks of memory if you dont plan on averaging.
+                averages = []
+                hash_times = hash_times[0]
     return hash_times[-1]-hash_times[0]
 
 def crack():
